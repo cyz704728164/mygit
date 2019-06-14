@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#back {
+				position: absolute;
+				background-image: url("photo/2.jpg");
+				background-image: no-repeat;
+			}
+			#demo {
+				width: 950px;
+				position: absolute;
+				right: 200px;
+			}
+			
+			#indemo1 {
+				position: absolute;
+				top: 740px;
+			}
+			
+			#indemo2 {
+				position: absolute;
+				top: 740px;
+				left: 250px;
+			}
+			
+			#indemo3 {
+				position: absolute;
+				top: 740px;
+				left: 500px;
+			}
+			
+			#indemo4 {
+				position: absolute;
+				top: 740px;
+				left: 750px;
+			}
+			
+			#font {
+				width: 100%;
+				position: absolute;
+			}
+			
+			#all {
+				position: absolute;
+				top: 70px;
+				left: 250px;
+			}
+			
+			img {
+				width: 100px;
+				height: 140px;
+			}
+			
+			#allphoto1 {
+				width: 450px;
+				height: 600px;
+			}
+		</style>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//显示桃心
+			setInterval(function() {
+				var $count = $(function() {
+					var height = $(window).width();
+					var $i = $('<b></b>').text('❤');
+					var x = function getRandom() {
+						return Math.floor(Math.random() * ($(document).width()-20))
+					}
+					$i.css({
+						"z-index": 9999,
+						"top": 690,
+						"left": x,
+						"position": "absolute",
+						"color": 'red',
+						"font-size":20,
+					});
+					$("body").append($i);
+					$i.animate({
+						"top": 10,
+						"opacity": 0
+					}, 2000, function() {
+						$i.remove();
+					}); //设置动画
+				});
+			}, 10)
+			//设置数组存放图片
+			var photo = new Array(4)
+			photo[0] = "photo/5.png";
+			photo[1] = "photo/6.png";
+			photo[2] = "photo/7.png";
+			photo[3] = "photo/8.png";
+			var num = 1;
+			setInterval(function() {
+				$("#allphoto1").attr("src", photo[num])
+				if(num < 3) {
+					num++
+				} else {
+					num = 0
+				}
+			}, 2000)
+			$(document).ready(function() {
+				$("#font").hide();
+				$("#indemo1").hide()
+				$("#indemo2").hide()
+				$("#indemo3").hide()
+				$("#indemo4").hide()
+				$("#all").hide()
+				$("button").click(function() {
+					var div1 = $("#back")
+					var div2 = $("#font")
+					div1.animate({
+						height: '+=98%',
+						width: '+=37%',
+					}, 2000)
+					div2.show(2000)
+					div2.animate({
+						fontSize: '+=2em'
+					})
+					$("#indemo1").fadeToggle(7000)
+					$("#img1").attr("src", photo[0])
+					$("#indemo2").slideToggle(5000)
+					$("#img2").attr("src", photo[1])
+					$("#indemo3").slideToggle(5000)
+					$("#img3").attr("src", photo[2])
+					$("#indemo4").fadeToggle(7000)
+					$("#img4").attr("src", photo[3])
+					$("#all").fadeToggle(10000)
+				})
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="back"></div>
+		<div id="demo">
+			<span id="font">刘明娟:我最爱的人<hr /></span>
+			<div id="indemo1"><img src="" id="img1" /></div>
+			<div id="indemo2"><img src="" id="img2" /></div>
+			<div id="indemo3"><img src="" id="img3" /></div>
+			<div id="indemo4"><img src="" id="img4" /></div>
+			<div id="all">
+				<img src="" id="allphoto1" />
+			</div>
+		</div>
+		<button>请开始我的表演</button>
+		<div id="text"></div>
+	</body>
+
+</html>
